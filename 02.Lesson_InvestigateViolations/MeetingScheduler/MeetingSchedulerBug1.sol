@@ -84,6 +84,10 @@ contract MeetingScheduler is IMeetingScheduler {
             block.timestamp < scheduledMeeting.endTime,
             "can't start a meeting after its end time"
         );
+        require(
+            block.timestamp >= scheduledMeeting.startTime,
+            "meeting can't start in the past"
+        );
         meetings[meetingId].status = MeetingStatus.STARTED;
     }
 
